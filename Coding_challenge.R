@@ -70,9 +70,155 @@ zdf_subset2 <- zdf[zdf$zsquared > 10 & zdf$zsquared < 100, ]
 zdf_row26 <- zdf[26, ]
 #Subset the zdf dataframe to only include the values in the column zsquared in the 180th row.
 zdf_col180 <- zdf$zsquared[180]
-write.csv(zdf, "zdf_output.csv", row.names = FALSE)
 
 #Question 5
+
 TipR <-read.csv("TipsR.csv")
 str(TipR)
 #it is denoted as character.
+
+
+
+# Data Visualization
+#load data
+
+data <- data("mtcars")
+#check the structure 
+str(mtcars)
+#some plotings
+plot(x=mtcars$wt,y=mtcars$mpg)
+     
+plot (wt~mpg, data=mtcars)
+
+plot(x = mtcars$wt, y = mtcars$mpg,
+     xlab = "Car Weight", 
+     ylab = "Miles per gallon", 
+     font.lab = 10, 
+     pch = 15) 
+# Using ggplots for ploting
+#load the Package
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot()
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = lm, se=FALSE) #find relationships between variables
+#change order of data
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = lm, se=FALSE) +
+  geom_point()
+#Modify the variables
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(color ="blue") +
+  xlab("Weight") + 
+  ylab("Miles per gallon")
+
+ggplot(mtcars, aes(x = wt, y = mpg, size=wt)) + # anything here applies to all the plot
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(color ="blue") +
+  xlab("Weight") + 
+  ylab("Miles per gallon")
+
+ggplot(mtcars, aes(x = wt, y = mpg, size=wt)) + # 
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(aes(x = wt),color ="blue") + #make aesthetics specific
+  xlab("Weight") + 
+  ylab("Miles per gallon")
+ggplot(mtcars, aes(x = wt, y = mpg, size=wt)) + # 
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(aes(size = wt, color = wt)) + #make aesthetics specific
+  xlab("Weight") + 
+  ylab("Miles per gallon")
+
+ggplot(mtcars, aes(x = wt, y = mpg, size=wt)) + # 
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(aes(size = cyl, color = hp)) + #make aesthetics specific
+  xlab("Weight") + 
+  ylab("Miles per gallon")+
+  scale_color_gradient(low = "green",high = "black") #change the color of scale or points
+#change the scale to log
+ggplot(mtcars, aes(x = wt, y = mpg, size=wt)) + # 
+  geom_smooth(method = lm, se = FALSE, color="grey") +
+  geom_point(aes(size = cyl, color = hp)) + #make aesthetics specific
+  xlab("Weight") + 
+  ylab("Miles per gallon")+
+  scale_color_gradient(low = "green",high = "black") +
+  scale_x_log10() +
+  scale_y_continuous(labels = scales::percent) #put percentage bar on the variables
+
+#Categorical Variables Ploting
+file.choose()
+bull.richness <- read.csv("Bull_richness.csv")
+
+bull.richness.soy.no.till <- bull.richness[bull.richness$Crop == "Soy" & 
+                                             bull.richness$Treatment == "No-till",] # subset to soy data
+
+#Barplot to show distributions of data
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, color = Fungicide)) + # boxplot
+  geom_boxplot() 
+
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, color = Fungicide)) + #OUTLIERS DOESN'T SHOW in this kind of data
+  geom_boxplot() + 
+  xlab("") +
+  ylab ("Fungal Richness") +
+geom_point(position = position_dodge(width = 0.9)) + #various ways to arrannge the points i.e distributions of your data
+geom_point(position=position_jitterdodge(dodge.width=0.9)) #dodging points 
+  #ylab("Bulleribasidiaceae richness")
+
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, color = Fungicide)) + 
+  geom_boxplot() + 
+  xlab("") + 
+  ylab("Bulleribasidiaceae richness") +
+  geom_point(position=position_jitterdodge(dodge.width=0.9))
+
+#introducing new measures in the data Stat Summary for Barplot
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, color = Fungicide)) + 
+  stat_summary(fun=mean,geom="bar",position = "dodge") +
+  stat_summary(fun.data = mean_se, geom = "errorbar") + 
+  xlab("") + 
+  ylab("Fungal richness") +
+  geom_point(position=position_jitterdodge(dodge.width=0.9)) 
+
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness,color =Fungicide, fill = Fungicide)) + #change color
+  stat_summary(fun=mean,geom="bar",position = "dodge") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", position = "dodge") + 
+  xlab("") + 
+  ylab("Fungal richness") +
+  geom_point(position=position_jitterdodge(dodge.width=0.9)) 
+
+#Line plots
+
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, group =Fungicide, color =Fungicide, fill = Fungicide)) + #change color
+  geom_point(position=position_jitterdodge(dodge.width=0.9)) +
+   stat_summary(fun=mean,geom="line",position = "dodge") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", position = "dodge") + 
+  xlab("") + 
+  ylab("Fungal richness") +
+  geom_point(position=position_jitterdodge(dodge.width=0.9)) 
+
+
+
+ggplot(bull.richness.soy.no.till, aes(x = GrowthStage, y = richness, group = Fungicide, color = Fungicide)) + 
+  stat_summary(fun=mean,geom="line") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
+  ylab("Fungal Richness \n richness") + 
+  xlab("") 
+
+#faceting
+
+ggplot(bull.richness, aes(x = GrowthStage, y = richness, group = Fungicide, color = Fungicide)) + 
+  stat_summary(fun=mean,geom="line") +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
+  ylab("Fungal Richness \n richness") + 
+  xlab("") +
+  facet_wrap(Crop~Treatment, scales = "free")
+
+#Advanced Visualization
+
+library(tidyverse)
+library(ggpubr) #for integrating multiple plot together
+library(ggrepel) #for labeling 
+
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
