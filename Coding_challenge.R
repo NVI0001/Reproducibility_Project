@@ -74,8 +74,12 @@ zdf_col180 <- zdf$zsquared[180]
 
 #Question 5
 
+<<<<<<< HEAD
 TipR <-read.csv("TipsR.csv", na.strings = ".") # na.stirng account for missing value
 TipR_data <-read.csv("TipsR.csv", na.strings = "missing") # treat as missing values in the data
+=======
+TipR <-read.csv("TipsR.csv")
+>>>>>>> b6a1bcddad1f4b3d843ddb72f2fcc080076bdb65
 str(TipR)
 #it is denoted as character.
 
@@ -218,7 +222,6 @@ ggplot(bull.richness, aes(x = GrowthStage, y = richness, group = Fungicide, colo
   facet_wrap(Crop~Treatment, scales = "free")
 
 
-
 ###Coding_Challenge2
 #load the library
 library(ggplot2)
@@ -304,4 +307,4 @@ ggplot(data1,aes(Treatment,DON, fill=Cultivar))+
       stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
       xlab("")+
       ylab ("DON(ppm)")
-
+    
