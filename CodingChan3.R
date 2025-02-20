@@ -17,6 +17,7 @@ ggplot(data1, aes(x = Treatment, y = DON, fill = Cultivar)) +
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
   facet_wrap(~Cultivar, scales = "free")
 #question2
+data1$Treatment <- factor(data1$Treatment, levels = c ("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
 Plot1 <- ggplot(data1, aes(x = Treatment, y = DON, fill = Cultivar)) +
   geom_boxplot(position =  "dodge") +  # Boxplot with proper dodge width
   geom_jitter( pch = 21, alpha=0.6,position = position_jitterdodge(),color = "black") + # Adjusted jitter dodge
@@ -25,7 +26,7 @@ Plot1 <- ggplot(data1, aes(x = Treatment, y = DON, fill = Cultivar)) +
   theme_classic() +
   #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
-  scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
+  #scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) 
   facet_wrap(~Cultivar, scales = "free")
 Plot1
 #question3
@@ -37,7 +38,7 @@ Plot2 <- ggplot(data1, aes(x = Treatment, y = X15ADON, fill = Cultivar)) +
   theme_classic() +
   #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
-  scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
+  #scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) 
   facet_wrap(~Cultivar, scales = "free")
 Plot2
 #question4a
@@ -49,7 +50,7 @@ Plot3<-ggplot(data1, aes(x = Treatment, y = MassperSeed_mg, fill = Cultivar)) +
   theme_classic() +
   #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
-  scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
+  #scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
   facet_wrap(~Cultivar, scales = "free")
 Plot3
 #question 4b
