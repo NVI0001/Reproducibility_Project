@@ -19,11 +19,11 @@ ggplot(data1, aes(x = Treatment, y = DON, fill = Cultivar)) +
 #question2
 Plot1 <- ggplot(data1, aes(x = Treatment, y = DON, fill = Cultivar)) +
   geom_boxplot(position =  "dodge") +  # Boxplot with proper dodge width
-  geom_jitter( pch = 21, position = position_jitterdodge(),color = "black") + # Adjusted jitter dodge
+  geom_jitter( pch = 21, alpha=0.6,position = position_jitterdodge(),color = "black") + # Adjusted jitter dodge
   xlab("") +
   ylab("DON (ppm)") +
   theme_classic() +
-  geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
+  #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
   scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
   facet_wrap(~Cultivar, scales = "free")
@@ -35,7 +35,7 @@ Plot2 <- ggplot(data1, aes(x = Treatment, y = X15ADON, fill = Cultivar)) +
   xlab("") +
   ylab("15ADON") +
   theme_classic() +
-  geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
+  #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
   scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
   facet_wrap(~Cultivar, scales = "free")
@@ -43,11 +43,11 @@ Plot2
 #question4a
 Plot3<-ggplot(data1, aes(x = Treatment, y = MassperSeed_mg, fill = Cultivar)) +
   geom_boxplot(position =  "dodge") +  # Boxplot with proper dodge width
-  geom_jitter( pch = 21, position = position_jitterdodge(),color = "black") + # Adjusted jitter dodge
+  geom_jitter( pch = 21, alpha=0.6,position = position_jitterdodge(),color = "black") + # Adjusted jitter dodge
   xlab("") +
   ylab("Seed Mass(mg)") +
   theme_classic() +
-  geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
+  #geom_jitter(pch=21,alpha=0.6,position = position_jitterdodge(),color="black")+
   scale_fill_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]) ) +
   scale_shape_manual(values = c(15, 16, 17, 18), name = "", labels = c("NTC", "Fg", "Fg +37", "Fg +40", "Fg +70")) +
   facet_wrap(~Cultivar, scales = "free")
@@ -60,8 +60,8 @@ figure_comb <- ggarrange(
   Plot2,
   Plot3,  # Second plot: bac.even
   labels = "auto",  # Automatically label the plots (A, B, C, etc.)
-  nrow = 3,  # Arrange the plots in 3 rows
-  ncol = 1, # Arrange the plots in 1 column
+  nrow = 1,  # Arrange the plots in 3 rows
+  ncol = 3, # Arrange the plots in 1 column
   common.legend = TRUE
   #legend = TRUE  # Do not include a legend in the combined figure
 )
@@ -85,8 +85,8 @@ figure_comba <- ggarrange(
   Plot2a,
   Plot3a,  # Second plot: bac.even
   labels = "auto",  # Automatically label the plots (A, B, C, etc.)
-  nrow = 3,  # Arrange the plots in 3 rows
-  ncol = 1, # Arrange the plots in 1 column
+  nrow = 1,  # Arrange the plots in 3 rows
+  ncol = 3, # Arrange the plots in 1 column
   common.legend = TRUE
   #legend = TRUE  # Do not include a legend in the combined figure
 )
