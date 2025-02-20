@@ -1,6 +1,6 @@
 #Codiing Challennge Data Visualization
 #load the data
-data1 <- read.csv("/Users/temitopefolorunso/Desktop/Computational_Biology/Reproducibility_Project.MycotoxinData.csv",na.strings = "na")
+data1 <- read.csv("MycotoxinData.csv",na.strings = "na")
 #Check the structure
 str(data1)
 
@@ -68,26 +68,26 @@ figure_comb <- ggarrange(
 figure_comb
 #question 5
 
-### example with * as significance levels
+### Plots with t-test as significance levels
 Plot1a <- Plot1 + 
-  geom_pwc(aes(group = Cultivar), method = "t_test", label = "p.adj.signif")
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}")
 Plot1a
 ### Example with combined pvalue and * to indicate significance
 Plot2a <- Plot2 + 
-  geom_pwc(aes(group = Cultivar), method = "t_test", label = "{p.adj.format}{p.adj.signif}")
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}")
 Plot2a
 Plot3a <- Plot3 + 
-  geom_pwc(aes(group = Cultivar), method = "t_test", label = "{p.adj.format}{p.adj.signif}")
-
-
-figure_comb <- ggarrange(
-  Plot1,# First plot: water.imbibed
-  Plot2,
-  Plot3,  # Second plot: bac.even
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}")
+Plot3a
+#Combine all plot
+figure_comba <- ggarrange(
+  Plot1a,# First plot: water.imbibed
+  Plot2a,
+  Plot3a,  # Second plot: bac.even
   labels = "auto",  # Automatically label the plots (A, B, C, etc.)
   nrow = 3,  # Arrange the plots in 3 rows
   ncol = 1, # Arrange the plots in 1 column
   common.legend = TRUE
   #legend = TRUE  # Do not include a legend in the combined figure
 )
-figure_comb
+figure_comba
