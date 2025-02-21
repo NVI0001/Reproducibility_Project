@@ -272,7 +272,7 @@ ggplot(data1,aes(Treatment,DON, color=Cultivar,fill=Cultivar))+
   stat_summary(geom = "errorbar",fun.data = mean_se, position = "dodge")+
   xlab("")+
   ylab ("DON(ppm)")+
-  geom_jitter(pch=21,position = position_jitterdodge(),color="black")+
+  geom_jitter(pch=21,position = position_jitterdodge(),width =0.1,color="black")+
   scale_fill_manual(values=cbbPalette) +
 scale_color_manual(values=cbbPalette)
 
