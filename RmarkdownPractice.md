@@ -53,20 +53,20 @@ R markdown formatting options
 - another item -one subitem
   1.  One item
   2.  second time -sub item -Name of important pest *Zonocerus*
-      **Zonocerus** `Bold`
+      **Zonocerus**
 
 ### third level header
 
-## Links
+### Links
 
 [Link to my
-github](Linkhttps://auburn.instructure.com/courses/1629066/pages/markdown?module_item_id=34890510b)
+github](https://auburn.instructure.com/courses/1629066/pages/markdown?module_item_id=34890510b)
 
-## Image
+### Image
 
 ![ggplot example](Plot3.jpg)
 
-## Formatted tables
+### Formatted tables
 
 ``` r
 library(knitr)
