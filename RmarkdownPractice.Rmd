@@ -31,7 +31,7 @@ R markdown formatting options
 
 - one time
 - another item
--one subitem
+- one subitem
   1. One item
   2. second time
   -sub item
