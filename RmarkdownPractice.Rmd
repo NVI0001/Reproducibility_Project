@@ -16,18 +16,45 @@ This is an example of R code
 summary(mtcars)
 ```
 This is to include figures
-```{r setup2, include=TRUE}
+```{r}
 library(ggplot2)
+library(knitr)
+library(markdown)
 data("mtcars")
 ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point()
+  geom_smooth(method = lm, se =FALSE) +
+  geom_point(aes(color = wt)) +
+  xlab("weight") +
+  ylab ("Mile per gallon") +
+  scale_color_gradient(low ="forestgreen", high ="black")
 ```
 
 R markdown formatting options
 
 # First level header
+
 **this is a italics**
+
 ## second level header
+
+
+``` markdown
+# First-level header
+
+## Second-level header
+
+### Third-level header
+```
+
+
+#### style and emphasis
+```markdown
+`*Zonocerus*`
+```
+
+
+
+
 
 - one time
 - another item

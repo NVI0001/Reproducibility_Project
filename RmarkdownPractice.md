@@ -36,18 +36,42 @@ library(ggplot2)
     ## Warning: package 'ggplot2' was built under R version 4.3.2
 
 ``` r
+library(knitr)
+library(markdown)
 data("mtcars")
 ggplot(mtcars, aes(x=wt, y=mpg)) +
-  geom_point()
+  geom_smooth(method = lm, se =FALSE) +
+  geom_point(aes(color = wt)) +
+  xlab("weight") +
+  ylab ("Mile per gallon") +
+  scale_color_gradient(low ="forestgreen", high ="black")
 ```
 
-![](RmarkdownPractice_files/figure-gfm/setup2-1.png)<!-- -->
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](RmarkdownPractice_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 R markdown formatting options
 
 # First level header
 
-**this is a italics** \## second level header
+**this is a italics**
+
+## second level header
+
+``` markdown
+# First-level header
+
+## Second-level header
+
+### Third-level header
+```
+
+#### style and emphasis
+
+``` markdown
+`*Zonocerus*`
+```
 
 - one time
 - another item
