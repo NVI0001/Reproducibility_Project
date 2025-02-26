@@ -63,7 +63,7 @@ R markdown formatting options and putting in chunks
 
 # First level header
 
-**this is a italics**
+**this is a italics in bold**
 
 ## second level header
 
@@ -71,7 +71,7 @@ R markdown formatting options and putting in chunks
 
 #### Fourth level header
 
-#### style and emphasis
+### style and emphasis
 
 ``` markdown
 `*Zonocerus*`
@@ -98,7 +98,7 @@ R markdown formatting options and putting in chunks
 **Zonocerus**
 
 ``` markdown
-> "I thoroughly enjoy this course.it will make me more efficient in R"
+> "I thoroughly enjoy this course.it will make me more efficient in R."
 >
 > --- Temitope
 ```
