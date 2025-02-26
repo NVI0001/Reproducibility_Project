@@ -1,5 +1,6 @@
 ---
 title: "Rmarkdown_Practice"
+Author: "Temitope Folorunso"
 date: "2025-02-24"
 output:
   md_document:
