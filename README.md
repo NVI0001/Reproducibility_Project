@@ -13,5 +13,53 @@
 - [Data folder](Data_Folder)
 
 ## File Tree
+```r
+fs::dir_tree()
+
+```
+```markdown
+├── Coding_Challenges   # Toplevel for all my R code assignment
+│   ├── CodingChan3.R   
+│   ├── Coding_challenge 2.R
+│   ├── Coding_challenge.R
+│   └── Coding_challenge1.R
+├── Data_Folder         # Toplevel for all the data used
+│   ├── BacterialAlpha.csv
+│   ├── Bull_richness.csv
+│   ├── MycotoxinData.csv
+│   ├── TipsR.csv
+│   ├── corr.csv
+│   ├── diff_abund.csv
+│   └── zdf_output.csv
+├── LICENSE
+├── Plot3.jpg
+├── README.html
+├── README.md       # Github formatted markdown
+├── Reproducibility_Project.Rproj   # Toplevel directory .Rproj fille =working directory
+├── RmarkdownPra2.Rmd               # Toplevel readme file for Rmarkdown parctice 2
+├── RmarkdownPra2.md
+├── RmarkdownPra2_files
+│   └── figure-gfm
+│       ├── unnamed-chunk-1-1.png
+│       ├── unnamed-chunk-2-1.png
+│       ├── unnamed-chunk-3-1.png
+│       ├── unnamed-chunk-4-1.png
+│       ├── unnamed-chunk-5-1.png
+│       ├── unnamed-chunk-6-1.png
+│       ├── unnamed-chunk-6-2.png
+│       ├── unnamed-chunk-6-3.png
+│       └── unnamed-chunk-6-4.png
+├── RmarkdownPractice.Rmd           # Toplevel readme file for Rmarkdown parctice 2
+├── RmarkdownPractice.html
+├── RmarkdownPractice.md            # Github formatted markdown
+├── RmarkdownPractice1.md
+└── RmarkdownPractice_files
+    └── figure-gfm
+        ├── pressure-1.png
+        ├── setup2-1.png
+        └── unnamed-chunk-1-1.png
+```
+
+
 
 
