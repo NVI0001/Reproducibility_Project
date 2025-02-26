@@ -51,13 +51,7 @@ ggplot(mtcars, aes(x=wt, y=mpg)) +
 
 ![](RmarkdownPractice_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-R markdown formatting options
-
-# First level header
-
-**this is a italics**
-
-## second level header
+R markdown formatting options and putting in chunks
 
 ``` markdown
 # First-level header
@@ -67,27 +61,84 @@ R markdown formatting options
 ### Third-level header
 ```
 
+# First level header
+
+**this is a italics**
+
+## second level header
+
+### Third level header
+
+#### Fourth level header
+
 #### style and emphasis
 
 ``` markdown
 `*Zonocerus*`
 ```
 
-- one time
+*Zonocerus*
+
+``` markdown
+`_Zonocerus_` 
+```
+
+*Zonocerus*
+
+``` markdown
+`**Zonocerus**` 
+```
+
+**Zonocerus**
+
+``` markdown
+`__Zonocerus__`
+```
+
+**Zonocerus**
+
+``` markdown
+> "I thoroughly enjoy this course.it will make me more efficient in R"
+>
+> --- Temitope
+```
+
+``` markdown
+- one item
+- one item
+- one item
+    - one more item
+    - one more item
+    - one more item
+```
+
+- one item
 - another item
 - one subitem
-  1.  One item
-  2.  second time -sub item -Name of important pest *Zonocerus*
-      **Zonocerus**
+  - one item
+  - second time
+  - sub item
 
-### third level header
+``` markdown
+1. one item
+2. two items
+3. three items
+  _ other item
+  _ sub other item
+```
 
-### Links
+#### Name of important pest
+
+*Zonocerus*
+
+**Zonocerus**
+
+### Inserting Links
 
 [Link to my
-github](https://auburn.instructure.com/courses/1629066/pages/markdown?module_item_id=34890510b)
+github](https://github.com/Damseltemi/PLPA_ClassAss/blob/main/RmarkdownPractice.md)
 
-### Image
+### Insering Image
 
 ![ggplot example](Plot3.jpg)
 
