@@ -1,4 +1,4 @@
-This is an example of R code
+# Example of R code in Rmarkdown
 
 ``` r
 # this is R code
@@ -27,7 +27,7 @@ summary(mtcars)
     ##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
     ##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
 
-This is to include figures
+# Example of included figures
 
 ``` r
 library(ggplot2)
@@ -51,7 +51,7 @@ ggplot(mtcars, aes(x=wt, y=mpg)) +
 
 ![](RmarkdownPractice_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-R markdown formatting options and putting in chunks
+## R markdown formatting options and putting in chunks
 
 ``` markdown
 # First-level header
@@ -60,6 +60,8 @@ R markdown formatting options and putting in chunks
 
 ### Third-level header
 ```
+
+## Styling header
 
 # First level header
 
@@ -127,18 +129,18 @@ R markdown formatting options and putting in chunks
   _ sub other item
 ```
 
-#### Name of important pest
+## Name of important pest
 
 *Zonocerus*
 
 **Zonocerus**
 
-### Inserting Links
+## Inserting Links
 
 [Link to my
 github](https://github.com/Damseltemi/PLPA_ClassAss/blob/main/RmarkdownPractice.md)
 
-### Insering Image
+## Insering Image
 
 ![ggplot example](Plot3.jpg)
 

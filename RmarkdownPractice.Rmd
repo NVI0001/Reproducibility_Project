@@ -11,12 +11,17 @@ output:
     pdf_document:
     word_doucment:  
 ---
-This is an example of R code
+
+
+# Example of R code in Rmarkdown
+
 ```{r setup, include=TRUE}
 # this is R code
 summary(mtcars)
 ```
-This is to include figures
+
+# Example of included figures
+
 ```{r}
 library(ggplot2)
 library(knitr)
@@ -30,7 +35,9 @@ ggplot(mtcars, aes(x=wt, y=mpg)) +
   scale_color_gradient(low ="forestgreen", high ="black")
 ```
 
-R markdown formatting options and putting in chunks
+
+## R markdown formatting options and putting in chunks
+
 
 ``` markdown
 # First-level header
@@ -39,6 +46,7 @@ R markdown formatting options and putting in chunks
 
 ### Third-level header
 ```
+## Styling header
 
 # First level header
 
@@ -109,19 +117,26 @@ __Zonocerus__
   _ sub other item
 ```
 
-#### Name of important pest
+
+## Name of important pest
 
 *Zonocerus*
 
 **Zonocerus** 
 
-### Inserting Links
+
+## Inserting Links
+
 [Link to my github](https://github.com/Damseltemi/PLPA_ClassAss/blob/main/RmarkdownPractice.md) 
 
-### Insering Image
+
+## Insering Image
+
 ![ggplot example](Plot3.jpg)
 
+
 ### Formatted tables
+
 ```{r}
 library(knitr)
 kable(head(mtcars, n = 5), digits = 3, format = "markdown")
