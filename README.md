@@ -9,7 +9,7 @@
 
 - [Coding Challenge 3](RmarkdownPra2.md)
 
-_ [Coding Challenge 4](Coding_Markdown.md)
+- [Coding Challenge 4](Coding_Markdown.md)
 
 ## Link to Data folder used
 - [Data folder](Data_Folder)
@@ -31,7 +31,7 @@ fs::dir_tree()
 ├── Coding_Markdown.Rmd     # Toplevel for Coding Challenge 4
 ├── Coding_Markdown.html
 ├── Coding_Markdown.md      #Github Formatted markdown
-├── Coding_Markdown.pdf
+├── Coding_Markdown.pdf     #Submitted pdf file for coding challenge 4
 ├── Data_Folder         # Toplevel for all the data used
 │   ├── BacterialAlpha.csv
 │   ├── Bull_richness.csv
