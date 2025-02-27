@@ -12,6 +12,9 @@
 ## Link to Data folder used
 - [Data folder](Data_Folder)
 
+## DOI
+[![DOI](https://zenodo.org/badge/924887632.svg)](https://doi.org/10.5281/zenodo.14934561)
+
 ## File Tree
 ```r
 fs::dir_tree()
