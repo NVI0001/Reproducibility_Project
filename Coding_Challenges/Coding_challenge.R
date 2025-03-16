@@ -113,7 +113,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_smooth(method = lm, se=FALSE) +
   geom_point()
-#Modify the variables
+#Modify the variables for scatter plot
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_smooth(method = lm, se = FALSE, color="grey") +
   geom_point(color ="blue") +
@@ -305,5 +305,6 @@ ggplot(data1,aes(Treatment,DON, fill=Cultivar))+
       stat_summary(fun=mean,geom="line") +
       stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
       xlab("")+
-      ylab ("DON(ppm)")
+      ylab ("DON(ppm)")+
+      facet_wrap(~Cultivar, scales = "free")
     

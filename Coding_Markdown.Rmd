@@ -19,7 +19,7 @@ tinytex::install_tinytex()
 ## Question 2a
 
 ### Link to Mycotoxin Manuscript
-[Link to the manuscript](https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-21-1253-RE) 
+[Link to the manuscript](https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-21-1253-RE.md) 
 
 ## Question 2b
 
