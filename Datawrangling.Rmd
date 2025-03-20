@@ -20,6 +20,7 @@ library(tidyverse)
 ```
 
 ```{r}
+getwd()
 microbiome.fungi <- read.csv("Data_Folder/Bull_richness.csv")
 str(microbiome.fungi)
 ```

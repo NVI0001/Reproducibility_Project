@@ -23,6 +23,12 @@ library(tidyverse)
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 ``` r
+getwd()
+```
+
+    ## [1] "/Users/temitopefolorunso/Desktop/PLPA6820_CodeAss"
+
+``` r
 microbiome.fungi <- read.csv("Data_Folder/Bull_richness.csv")
 str(microbiome.fungi)
 ```
