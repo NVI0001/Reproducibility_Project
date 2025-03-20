@@ -3,37 +3,29 @@ title: "DataWrangling_Challenge5"
 author: "Temitope Ruth Folorunso and Nneka Vivian Iduu"
 date: "2025-03-20"
 output: 
-<<<<<<< HEAD
   md_document:
     variant: gfm
   pdf_document:
     toc: true
-=======
-  pdf_document:
-  word_document:
-  md_document:
-    variant: gfm
->>>>>>> 476ae0f8cfc1f71fdb8f0dceb186ec2a7d71318d
 ---
+
 This assignment will help you practice integrating some of the tidyverse functions into your R scripts. It will also involve some more practice with GitHub. You may collaborate with a partner to enhance your learning experience. Please ensure the following:
 
-### Question 1
+# Question 1
 
 3pts. Download two .csv files from Canvas called DiversityData.csv and Metadata.csv, and read them into R using relative file paths.
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
+
 library(tidyverse)
 Metadata <- read.csv("Metadata.csv", na="na") 
 DiversityData <- read.csv("DiversityData.csv", na="na")
 str(Metadata)
 str(DiversityData)
-<<<<<<< HEAD
-getwd()
-=======
->>>>>>> 476ae0f8cfc1f71fdb8f0dceb186ec2a7d71318d
+
 ```
 
-### Question 2
+# Question 2
 
 4pts. Join the two dataframes together by the common column ‘Code’. Name the resulting dataframe alpha
 
@@ -42,7 +34,7 @@ alpha <- left_join(Metadata, DiversityData, by = "Code")
 head(alpha)
 ```
 
-### Question 3 
+# Question 3 
 
 4 pts. Calculate Pielou’s evenness index: Pielou’s evenness is an ecological parameter calculated by the Shannon diversity index (column Shannon) divided by the log of the richness column. 
 a.	Using mutate, create a new column to calculate apl. 
@@ -54,7 +46,7 @@ alpha_log <- mutate(alpha, logRich = log(richness)) # create new column named lo
 alpha_even <- mutate(alpha_log, eveness_index = shannon / logRich) # create new column named Pielou’s evenness index that has the log of richness  
 ```
 
-### Question 4
+# Question 4
 
 4pts. Using tidyverse language of functions and the pipe, use the summarise function and tell me the mean and standard error evenness grouped by crop over time.
 a.	Start with the alpha_even dataframe
@@ -73,7 +65,7 @@ alpha_average <- alpha_even %>%
             mutate(std.err =sd.dev/sqrt(n))
 ```
 
-### Question 5
+# Question 5
 
 4. Pts. Calculate the difference between the soybean column, the soil column, and the difference between the cotton column and the soil column
 a.	Start with the alpha_average dataframe
@@ -89,7 +81,7 @@ alpha_average2 <- alpha_average %>%
   mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean )
 ```
 
-### Question 6
+# Question 6
 
 4 pts. Connecting it to plots
 a.	Start with the alpha_average2 dataframe
@@ -112,16 +104,12 @@ labs(x = "Time (hrs)", y = "Difference from soil in Pielou's evenness") +
 theme_classic()
 ```
 
-### Question 7 
+# Question 7 
 
 2 pts. Commit and push a gfm .md file to GitHub inside a directory called Coding Challenge 5. Provide me a link to your github written as a clickable link in your .pdf or .docx
 
-
-<<<<<<< HEAD
 https://github.com/NVI0001/Reproducibility_Project/tree/main/CodingChallenge5_files
-=======
 
->>>>>>> 476ae0f8cfc1f71fdb8f0dceb186ec2a7d71318d
 
 
 

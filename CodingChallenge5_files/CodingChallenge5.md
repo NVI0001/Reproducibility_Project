@@ -3,12 +3,51 @@ functions into your R scripts. It will also involve some more practice
 with GitHub. You may collaborate with a partner to enhance your learning
 experience. Please ensure the following:
 
-### Question 1
+# Question 1
 
 3pts. Download two .csv files from Canvas called DiversityData.csv and
 Metadata.csv, and read them into R using relative file paths.
 
-### Question 2
+``` r
+library(tidyverse)
+```
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+Metadata <- read.csv("Metadata.csv", na="na") 
+DiversityData <- read.csv("DiversityData.csv", na="na")
+str(Metadata)
+```
+
+    ## 'data.frame':    70 obs. of  5 variables:
+    ##  $ Code         : chr  "S01_13" "S02_16" "S03_19" "S04_22" ...
+    ##  $ Crop         : chr  "Soil" "Soil" "Soil" "Soil" ...
+    ##  $ Time_Point   : int  0 0 0 0 0 0 6 6 6 6 ...
+    ##  $ Replicate    : int  1 2 3 4 5 6 1 2 3 4 ...
+    ##  $ Water_Imbibed: num  NA NA NA NA NA NA NA NA NA NA ...
+
+``` r
+str(DiversityData)
+```
+
+    ## 'data.frame':    70 obs. of  5 variables:
+    ##  $ Code      : chr  "S01_13" "S02_16" "S03_19" "S04_22" ...
+    ##  $ shannon   : num  6.62 6.61 6.66 6.66 6.61 ...
+    ##  $ invsimpson: num  211 207 213 205 200 ...
+    ##  $ simpson   : num  0.995 0.995 0.995 0.995 0.995 ...
+    ##  $ richness  : int  3319 3079 3935 3922 3196 3481 3250 3170 3657 3177 ...
+
+# Question 2
 
 4pts. Join the two dataframes together by the common column ‘Code’. Name
 the resulting dataframe alpha
@@ -33,7 +72,7 @@ head(alpha)
     ## 5     3196
     ## 6     3481
 
-### Question 3
+# Question 3
 
 4 pts. Calculate Pielou’s evenness index: Pielou’s evenness is an
 ecological parameter calculated by the Shannon diversity index (column
@@ -47,7 +86,7 @@ alpha_log <- mutate(alpha, logRich = log(richness)) # create new column named lo
 alpha_even <- mutate(alpha_log, eveness_index = shannon / logRich) # create new column named Pielou’s evenness index that has the log of richness  
 ```
 
-### Question 4
+# Question 4
 
 4pts. Using tidyverse language of functions and the pipe, use the
 summarise function and tell me the mean and standard error evenness
@@ -69,7 +108,7 @@ alpha_average <- alpha_even %>%
     ## `summarise()` has grouped output by 'Crop'. You can override using the
     ## `.groups` argument.
 
-### Question 5
+# Question 5
 
 4.  Pts. Calculate the difference between the soybean column, the soil
     column, and the difference between the cotton column and the soil
@@ -95,7 +134,7 @@ alpha_average2 <- alpha_average %>%
   mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean )
 ```
 
-### Question 6
+# Question 6
 
 4 pts. Connecting it to plots a. Start with the alpha_average2 dataframe
 b. Select relevant columns: select the columns Time_Point,
@@ -131,7 +170,7 @@ theme_classic()
 
 ![](CodingChallenge5_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-### Question 7
+# Question 7
 
 2 pts. Commit and push a gfm .md file to GitHub inside a directory
 called Coding Challenge 5. Provide me a link to your github written as a
