@@ -118,4 +118,50 @@ alpha_average2 <- alpha_average %>%
   mutate(diff.cotton.even =Soil - Cotton, diff.soybean.even =Soil - Soybean )
 ```
 
-\`\`\`
+### Question 6
+
+6.  4 pts. Connecting it to plots
+
+<!-- -->
+
+1.  Start with the alpha_average2 dataframe
+2.  Select relevant columns: select the columns Time_Point,
+    diff.cotton.even, and diff.soybean.even.
+3.  Reshape the data: Use the pivot_longer function to transform the
+    data from wide to long format, creating a new column named diff that
+    contains the values from diff.cotton.even and diff.soybean.even.
+4.  This might be challenging, so I’ll give you a break. The code is
+    below.
+
+pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = “diff”)
+
+4.  Create the plot: Use ggplot and geom_line() with ‘Time_Point’ on the
+    x-axis, the column ‘values’ on the y-axis, and different colors for
+    each ‘diff’ category. The column named ‘values’ come from the
+    pivot_longer. The resulting plot should look like the one to the
+    right.
+
+``` r
+alpha_average2 %>%
+select(Time_Point, diff.cotton.even, diff.soybean.even) %>%
+pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = "diff") %>%
+rename(Crop = diff) %>% # Just to make the plot look nice
+mutate(Crop = str_replace(Crop, "diff.cotton.even", "Cotton")) %>% # Just to make the plot look nice
+mutate(Crop = str_replace(Crop, "diff.soybean.even", "Soybean")) %>% # Just to make the plot look n
+ggplot(aes(x = Time_Point, y = value, color = Crop)) +
+geom_line(size = 1) +
+labs(x = "Time (hrs)", y = "Difference from soil in Pielou's evenness") +
+theme_classic()
+```
+
+    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `linewidth` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+![](CodingChallenge5_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+### Link to
+
+<https://github.com/Damseltemi/PLPA_ClassAss/blob/main/CodingChallenge5.md>
