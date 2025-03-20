@@ -1,0 +1,17 @@
+---
+title: "DataWrangling_Challenge"
+author: "Temitope Folorunso and Nneka Iduu"
+date: "2025-03-20"
+output: 
+  md_document:
+    variant: gfm
+  pdf_document:
+    toc: true
+    word_doucment:
+---
+
+```{r setup, include=FALSE}
+microbiome.fungi <- read.csv("Data_Folder/Bull_richness.csv")
+str(microbiome.fungi)
+```
+
