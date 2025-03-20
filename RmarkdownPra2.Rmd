@@ -1,6 +1,7 @@
 ---
 title: "Rmarkdownprac2"
 date: "2025-02-25"
+Author: "Nneka Iduu and Temitope Folorunso"
 output:
   md_document:
     variant: gfm
@@ -10,6 +11,8 @@ output:
     pdf_document:
     word_doucment:
 ---
+
+
 ## Differnt plots for mycotoxin data
 ### Here i first load all packages to be used and load mycotoxin data
 ```{r setup, include=TRUE}

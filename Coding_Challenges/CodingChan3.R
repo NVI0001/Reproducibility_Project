@@ -96,3 +96,4 @@ figure_comba <- ggarrange(
   #legend = TRUE  # Do not include a legend in the combined figure
 )
 figure_comba
+

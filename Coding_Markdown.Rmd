@@ -3,12 +3,11 @@ title: "Coding Challeng4: Markdown"
 date: "2025-02-25"
 Author: "Nneka Iduu and Temitope Folorunso"
 output:
-  pdf_document:
-    toc: true
-    #toc_float: true
   md_document:
     variant: gfm
-  word_document:
+  pdf_document:
+    toc: true
+    word_doucment:
 ---
 ```{r Install Tinytex, eval=FALSE}
 install.packages('tinytex')
@@ -19,7 +18,7 @@ tinytex::install_tinytex()
 ## Question 2a
 
 ### Link to Mycotoxin Manuscript
-[Link to the manuscript](https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-21-1253-RE) 
+[Link to the manuscript](https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-21-1253-RE.md) 
 
 ## Question 2b
 
