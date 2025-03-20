@@ -2,13 +2,12 @@
 title: "Data wrangling"
 author: "Temitope Folorunso"
 date: "2025-03-16"
-output: 
-  pdf_document:
-    toc: true
-    #toc_float: true
+output:
   md_document:
     variant: gfm
-  word_document:
+  pdf_document:
+    toc: true
+    word_doucment:
 ---
 ```{r Install Tinytex, eval=FALSE}
 install.packages('tinytex')
