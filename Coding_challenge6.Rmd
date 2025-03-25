@@ -1,0 +1,184 @@
+---
+title: "Coding_Challenge6"
+author: "Temitope Folorunso"
+date: "2025-03-22"
+output:
+  md_document:
+    variant: gfm
+  pdf_document:
+    toc: true
+    word_doucment:
+---
+## Iterations and Functions
+Install necessary packages
+```{r setup, include=FALSE}
+library(ggplot2)
+if (!require(drc)) install.packages("drc", repos = "https://cloud.r-project.org")
+library(drc)
+library(tidyverse)
+```
+
+### Making a function in R for example converting Fahrenheit to Celsius
+
+```markdown
+### Anatomy of a function
+
+sample.function <- function(... variable goes here ...){
+  .... code goes here.... 
+  return(... output ...)
+}
+
+```
+
+```{r}
+#converting Fahrenheit to celsius formular can be re wriiten like this
+#(5*(degree_f - 32)/9)
+#Convert 32 ºF to celsius
+(5*(32 - 32)/9)
+#Convert 80 ºF to celsius
+(5*(80 - 32)/9)
+
+# making it a function (fahrenheit_temp) is the object i want to input into the function as a value
+F_to_C <- function(fahrenheit_temp){
+  celsius <- (5*(fahrenheit_temp - 32)/9)
+  return(celsius) #output of the function
+}  # Function will be saved
+
+# these do the same thing F_to_C is the name of the variable
+F_to_C(32)
+F_to_C(67)
+```
+
+### convert celsius to fahrenheiht function
+```{r}
+C_to_F <- function(celsius_temp) {
+  Farenheiht <- (celsius_temp*(9/5)+32)
+  return(Farenheiht)
+}
+
+#sample
+C_to_F(0)
+```
+
+### Iterations using following functions
+```markdown
+1. rep() 
+2. seq() & seq_along() 
+3. for loops map() *nested map()
+```
+```{r}
+# Uisng rep() command
+rep("A", 3)  # repeats A three times 
+
+rep(c("A", "B"), 5) # repeats A and B, times i.e multiple thins together
+
+rep(c(1,2,3,4), times = 4) # repeats 1,2,3,4, 4 times 
+
+rep(c(1,2,5,3), times = 4, each = 4) # repeats 1 four times, 2 four times, 5 four times, and 2 four times.
+
+# seq() command allows you to write sequences of numbers easily
+1:7
+seq(1:7) # sequence of numbers 1 to 7
+seq(from = 1, to = 7) # sequence of numbers 1 to 7
+seq(from = 0, to = 10, by = 2) # sequence of numbers from 0 to 10 by 2s 
+# combined seq() and rep()
+rep(seq(from = 0, to = 10, by = 2), times = 3, each = 2)
+
+LETTERS
+seq_along(LETTERS) #allows to go letter by letter
+seq_along(LETTERS[1:5]) # will return 1,2,3,4,5 not the actual letters.
+```
+### The for loop 
+```{r}
+# the classic one , it set up iterations i is the iterations or any letters 
+for (i in 1:10) {
+print(i*2)  
+}
+
+# More complicated for loop
+for (i in -30:100){
+  result <- F_to_C(i)
+  print(result)
+}
+for (i in 0:30){
+  result <- C_to_F(i)
+  print(result)
+}
+
+# printing the results into an object 
+celcius.df <- NULL 
+for (i in -30:100){   
+result_i <- data.frame(F_to_C(i), i)
+celcius.df <- rbind.data.frame(celcius.df, result_i) 
+}
+```
+
+### Complex challenge on how to loop through for non-linear regression
+```{r}
+# read in the data
+EC50.data <- read.csv("Data_Folder/EC50.all.csv", na="na")
+head(EC50.data)
+isolate1 <- drm(100 * EC50.data$relgrowth[EC50.data$is == "ILSO_5-41c"] ~ 
+        EC50.data$conc[EC50.data$is == "ILSO_5-41c"], 
+                       fct = LL.4(fixed = c(NA, NA, NA, NA), #LL.4 is the name of model
+                                  names = c("Slope", "Lower", "Upper", "EC50")), 
+                       na.action = na.omit)
+    # outputs the summary of the paramters including the estimate, standard
+    # error, t-value, and p-value outputs it into a data frame called
+    # summary.mef.fit for 'summary of fit'
+    summary.fit <- data.frame(summary(isolate1)[[3]]) 
+    # outputs the summary of just the EC50 data including the estimate, standard
+    # error, upper and lower bounds of the 95% confidence intervals around the
+    # EC50
+    EC50 <- ED(isolate1, respLev = c(50), type = "relative", 
+        interval = "delta")[[1]]
+#the result above calculate for just one isolate
+```
+### Creating loop to iterate each isolate
+```{r}
+#first create a vector
+nm <- unique(EC50.data$is)
+EC50.ll4 <- NULL # create a null object
+for (i in seq_along(nm)) {
+  isolate1 <- drm(100 * EC50.data$relgrowth[EC50.data$is == nm[[i]]] ~ 
+        EC50.data$conc[EC50.data$is == nm[[i]]], 
+                       fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                  names = c("Slope", "Lower", "Upper", "EC50")), 
+                       na.action = na.omit)
+    # outputs the summary of the paramters including the estimate, standard
+    # error, t-value, and p-value outputs it into a data frame called
+    # summary.mef.fit for 'summary of fit'
+    summary.fit <- data.frame(summary(isolate1)[[3]])
+    # outputs the summary of just the EC50 data including the estimate, standard
+    # error, upper and lower bounds of the 95% confidence intervals around the
+    # EC50
+    EC50 <- ED(isolate1, respLev = c(50), type = "relative", 
+        interval = "delta")[[1]]
+    EC50
+    isolate.ec_i <- data.frame(nm[[i]], EC50) # create a one row dataframe containing just the isolate name and the EC50
+    colnames(isolate.ec_i) <- c("Isolate", "EC50") # change the column names
+    
+    # Then we need to append our one row dataframe to our null dataframe we created before
+    # and save it as EC50.ll4. 
+    EC50.ll4 <- rbind.data.frame(EC50.ll4, isolate.ec_i)
+}
+#this calculate for all the isolates
+#Produce map of the data
+ggplot(EC50.ll4, aes(x = EC50)) + geom_histogram() + theme_classic()
+```
+### Doing the same, using map with tidy verse
+```{r}
+EC50.data %>%
+  group_by(is)%>%
+  nest()%>% # allows you to make subdataframe within a dataframe , it keep data tidy in a long format
+  mutate(ll.4.mod = map(data, ~drm(.$relgrowth ~ .$conc, 
+                              fct = LL.4(fixed = c(NA, NA, NA, NA), 
+                                         names = c("Slope", "Lower", "Upper", "EC50")))))%>% #create a new column of summary data of each non-linear regression
+  mutate(ec50 = map(ll.4.mod, ~ED(.,  #map is a for loop contain in a function 
+                              respLev = c(50), 
+                              type = "relative",
+                              interval = "delta")[[1]])) %>%
+  unnest(ec50) #to get the data out
+```
+
+
