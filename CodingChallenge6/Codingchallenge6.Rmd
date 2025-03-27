@@ -1,0 +1,16 @@
+---
+title: "Codingchallenge6"
+author: "Temitope Folorunso&Nneka Iduu"
+date: "2025-03-27"
+output: 
+  md_document:
+    variant: gfm
+  pdf_document:
+    toc: true
+    word_doucment:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
