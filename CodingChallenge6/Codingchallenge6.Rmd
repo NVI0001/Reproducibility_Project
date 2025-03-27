@@ -3,23 +3,23 @@ title: "Codingchallenge6"
 author: "Temitope Folorunso&Nneka Iduu"
 date: "2025-03-27"
 output:
-  html_document:
-    toc: yes
-    df_print: paged
-  word_doucment: null
   md_document:
     variant: gfm
-  pdf_document:
-    toc: yes
+  html_document:
+    toc: true
+    toc_float: true
+    pdf_document:
+    word_doucment:  
 ---
 ## Loops and iterations – 25 pts
 
-
 This assignment will help with practicing on writing and executing for loops and writing functions. It will also involve some more practice with GitHub. 
+
 ### Question 1
 1.	2 pts. Regarding reproducibility, what is the main point of writing your own functions and iterations? 
 
 The main purpose of writing our own functions and iterations is to enable automation, which prevents mistakes from copying and pasting. This allows us to repeat processes on different datasets, making the code more efficient and consistent, thus ensuring reproducible data management.
+
 ### Question 2
 2. 	2 pts. In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned. 
 
@@ -37,6 +37,7 @@ my_function <- function(x, y) {
   return(result)
 }
 result  #call result if needed – optional
+
 ### How it works;
 The function with name, my_function is created and given inputs x and y. Inside the curly brackets {}, it adds the inputs together (x + y) as the specified operation and then returns the result of that operation.
 
@@ -49,8 +50,8 @@ How to write a for loop in R;
 for (i in 1:5) {   
   print(i)          
 }
- 
- How it works;
+
+How it works;
 The for loop iterates over a sequence (in this case, numbers 1 to 5). On each iteration, it assigns the current number to i and prints it. The loop runs 5 times, printing the values 1 through 5.
 
 This dataset contains the population and coordinates (latitude and longitude) of the 40 most populous cities in the US, along with Auburn, AL. Your task is to create a function that calculates the distance between Auburn and each other city using the Haversine formula. To do this, you'll write a for loop that goes through each city in the dataset and computes the distance from Auburn. Detailed steps are provided below.
@@ -124,4 +125,9 @@ Distance.all <- data.frame(distances)
 
 Data1<- data[, c("city","City2", "Distance_km")]
 Data1 <- rename(Data1, City1 = city)
+```
+
+```markdown
+link to the github 
+[Link to my code_challenge6](https://github.com/Damseltemi/PLPA_ClassAss/tree/main/CodingChallenge6)
 ```
