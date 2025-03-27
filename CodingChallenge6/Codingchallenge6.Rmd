@@ -1,26 +1,23 @@
 ---
 title: "Codingchallenge6"
-author: "Temitope Folorunso&Nneka Iduu"
+author: "Temitope Folorunso & Nneka Iduu"
 date: "2025-03-27"
-output:
+output: 
+  pdf_document:
+    toc: true 
   md_document:
     variant: gfm
-  html_document:
-    toc: true
-    toc_float: true
-    pdf_document:
-    word_doucment:  
 ---
-## Loops and iterations – 25 pts
+# Loops and iterations – 25 pts
 
 This assignment will help with practicing on writing and executing for loops and writing functions. It will also involve some more practice with GitHub. 
 
-### Question 1
+## Question 1
 1.	2 pts. Regarding reproducibility, what is the main point of writing your own functions and iterations? 
 
 The main purpose of writing our own functions and iterations is to enable automation, which prevents mistakes from copying and pasting. This allows us to repeat processes on different datasets, making the code more efficient and consistent, thus ensuring reproducible data management.
 
-### Question 2
+## Question 2
 2. 	2 pts. In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned. 
 
 How to write a function in R;
@@ -56,13 +53,13 @@ The for loop iterates over a sequence (in this case, numbers 1 to 5). On each it
 
 This dataset contains the population and coordinates (latitude and longitude) of the 40 most populous cities in the US, along with Auburn, AL. Your task is to create a function that calculates the distance between Auburn and each other city using the Haversine formula. To do this, you'll write a for loop that goes through each city in the dataset and computes the distance from Auburn. Detailed steps are provided below.
 
-### Question 3
+## Question 3
 3.	2 pts. Read in the Cities.csv file from Canvas using a relative file path
 ```{r setup, include=FALSE}
 data <- read.csv("Cities.csv", na="na") 
 ```
 
-### Question 4
+## Question 4
 4.	6 pts. Write a function to calculate the distance between two pairs of coordinates based on the Haversine formula (see below). The input into the function should be lat1, lon1, lat2, and lon2. The function should return the object distance_km. All the code below needs to go into the function.
 ```{r}
 
@@ -87,7 +84,8 @@ distance_km <- (earth_radius * c)/1000
 return(distance_km)
 }
 ```
-### QUestion 5
+
+## Question 5
  Using your function, compute the distance between Auburn, AL and New York City 
  a.	Subset/filter the Cities.csv data to include only the latitude and longitude values you need and input as input to your function. 
 ```{r}
@@ -102,7 +100,7 @@ lon2 <- data$long[data$city == "New York"]
 DistanCord(lat1,lon1,lat2,lon2)
 ```
  
-### Question 6
+## Question 6
 	6 pts. Now, use your function within a for loop to calculate the distance between all other cities in the data. The output of the first 9 iterations is shown below. 
 ```{r}
 
@@ -127,5 +125,5 @@ Data1<- data[, c("city","City2", "Distance_km")]
 Data1 <- rename(Data1, City1 = city)
 ```
 
-### link to the github 
+## link to the github 
 [Link to my code_challenge6](https://github.com/Damseltemi/PLPA_ClassAss/tree/main/CodingChallenge6)
