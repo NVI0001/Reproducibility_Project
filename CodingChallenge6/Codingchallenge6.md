@@ -158,7 +158,7 @@ Data1<- data[, c("city","City2", "Distance_km")]
 Data1 <- rename(Data1, City1 = city)
 ```
 
-``` markdown
-link to the github 
-[Link to my code_challenge6](https://github.com/Damseltemi/PLPA_ClassAss/tree/main/CodingChallenge6)
-```
+### link to the github
+
+[Link to my
+code_challenge6](https://github.com/Damseltemi/PLPA_ClassAss/tree/main/CodingChallenge6)
