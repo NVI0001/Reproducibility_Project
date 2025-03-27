@@ -9,8 +9,22 @@ output:
     toc: true
     word_doucment:
 ---
+## Loops and iterations – 25 pts
 
+
+This assignment will help with practicing on writing and executing for loops and writing functions. It will also involve some more practice with GitHub. 
+### Question 1
+1.	2 pts. Regarding reproducibility, what is the main point of writing your own functions and iterations? 
+### Question 2
+2. 	2 pts. In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned. 
+
+
+
+This dataset contains the population and coordinates (latitude and longitude) of the 40 most populous cities in the US, along with Auburn, AL. Your task is to create a function that calculates the distance between Auburn and each other city using the Haversine formula. To do this, you'll write a for loop that goes through each city in the dataset and computes the distance from Auburn. Detailed steps are provided below.
+
+### Question 3
+3.	2 pts. Read in the Cities.csv file from Canvas using a relative file path
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+data <- read.csv("Cities.csv", na="na") 
 ```
 
