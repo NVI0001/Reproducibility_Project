@@ -2,11 +2,12 @@
 title: "Linearregression_challenge"
 author: "Temitope Folorunso & Nneka Iduu"
 date: "2025-04-02"
-output: 
-  pdf_document:
-    toc: true 
+output:
   md_document:
     variant: gfm
+  pdf_document:
+    toc: true
+    word_doucment:
 ---
 # Linear Model – 25 pts
 ## Question 1
