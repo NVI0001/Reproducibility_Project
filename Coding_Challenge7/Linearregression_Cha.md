@@ -10,29 +10,22 @@
 ``` r
 # Read in data and set variable as a factor
 data <- read.csv("PlantEmergence.csv",na="na")
-head(data)
+str(data)
 ```
 
-    ##   Plot Treatment Rep Emergence DatePlanted DateCounted DaysAfterPlanting
-    ## 1  101         1   1     180.5    9-May-22   16-May-22                 7
-    ## 2  102         2   1      54.5    9-May-22   16-May-22                 7
-    ## 3  103         3   1     195.0    9-May-22   16-May-22                 7
-    ## 4  104         4   1     198.5    9-May-22   16-May-22                 7
-    ## 5  105         5   1     202.0    9-May-22   16-May-22                 7
-    ## 6  106         6   1     184.0    9-May-22   16-May-22                 7
+    ## 'data.frame':    144 obs. of  7 variables:
+    ##  $ Plot             : int  101 102 103 104 105 106 107 108 109 201 ...
+    ##  $ Treatment        : int  1 2 3 4 5 6 7 8 9 6 ...
+    ##  $ Rep              : int  1 1 1 1 1 1 1 1 1 2 ...
+    ##  $ Emergence        : num  180.5 54.5 195 198.5 202 ...
+    ##  $ DatePlanted      : chr  "9-May-22" "9-May-22" "9-May-22" "9-May-22" ...
+    ##  $ DateCounted      : chr  "16-May-22" "16-May-22" "16-May-22" "16-May-22" ...
+    ##  $ DaysAfterPlanting: int  7 7 7 7 7 7 7 7 7 7 ...
 
 ``` r
-# set variable as a factor
-data$Treatment <- as.factor(data$Treatment) 
-data$DaysAfterPlanting <- as.factor(data$DaysAfterPlanting) 
-data$Rep <- as.factor(data$Rep) 
 # Load necessary libraries
 library(tidyverse)
 ```
-
-    ## Warning: package 'ggplot2' was built under R version 4.3.2
-
-    ## Warning: package 'tidyr' was built under R version 4.3.2
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -49,8 +42,6 @@ library(tidyverse)
 library(lme4)
 ```
 
-    ## Warning: package 'lme4' was built under R version 4.3.2
-
     ## Loading required package: Matrix
     ## 
     ## Attaching package: 'Matrix'
@@ -63,26 +54,17 @@ library(lme4)
 library(emmeans)
 ```
 
-    ## Warning: package 'emmeans' was built under R version 4.3.2
+    ## Welcome to emmeans.
+    ## Caution: You lose important information if you filter this package's results.
+    ## See '? untidy'
 
 ``` r
 library(multcomp)
 ```
 
-    ## Warning: package 'multcomp' was built under R version 4.3.3
-
     ## Loading required package: mvtnorm
-
-    ## Warning: package 'mvtnorm' was built under R version 4.3.3
-
     ## Loading required package: survival
-
-    ## Warning: package 'survival' was built under R version 4.3.2
-
     ## Loading required package: TH.data
-
-    ## Warning: package 'TH.data' was built under R version 4.3.3
-
     ## Loading required package: MASS
     ## 
     ## Attaching package: 'MASS'
@@ -100,9 +82,25 @@ library(multcomp)
 
 ``` r
 library(multcompView)
+
+# Turn the Treatment , DaysAfterPlanting  and Rep into factors
+data <- data %>%
+  mutate(
+    Treatment = as.factor(Treatment),
+    DaysAfterPlanting = as.factor(DaysAfterPlanting),
+    Rep = as.factor(Rep)
+  )
+str(data)
 ```
 
-    ## Warning: package 'multcompView' was built under R version 4.3.2
+    ## 'data.frame':    144 obs. of  7 variables:
+    ##  $ Plot             : int  101 102 103 104 105 106 107 108 109 201 ...
+    ##  $ Treatment        : Factor w/ 9 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 6 ...
+    ##  $ Rep              : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 1 1 1 1 2 ...
+    ##  $ Emergence        : num  180.5 54.5 195 198.5 202 ...
+    ##  $ DatePlanted      : chr  "9-May-22" "9-May-22" "9-May-22" "9-May-22" ...
+    ##  $ DateCounted      : chr  "16-May-22" "16-May-22" "16-May-22" "16-May-22" ...
+    ##  $ DaysAfterPlanting: Factor w/ 4 levels "7","14","21",..: 1 1 1 1 1 1 1 1 1 1 ...
 
 ## Question 2
 
@@ -155,7 +153,7 @@ summary(lm_model)
     ## Treatment9:DaysAfterPlanting21 -1.250e+00  1.065e+01  -0.117    0.907    
     ## Treatment2:DaysAfterPlanting28  2.750e+00  1.065e+01   0.258    0.797    
     ## Treatment3:DaysAfterPlanting28 -1.875e+00  1.065e+01  -0.176    0.861    
-    ## Treatment4:DaysAfterPlanting28  3.264e-13  1.065e+01   0.000    1.000    
+    ## Treatment4:DaysAfterPlanting28  3.123e-13  1.065e+01   0.000    1.000    
     ## Treatment5:DaysAfterPlanting28  2.500e+00  1.065e+01   0.235    0.815    
     ## Treatment6:DaysAfterPlanting28  2.125e+00  1.065e+01   0.200    0.842    
     ## Treatment7:DaysAfterPlanting28 -3.625e+00  1.065e+01  -0.340    0.734    
@@ -183,13 +181,21 @@ anova(lm_model)
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-### Question 3
+## Question 3
 
-3.  5 pts. Based on the results of the linear model in question 2, do
-    you need to fit the interaction term? Provide a simplified linear
-    model without the interaction term but still testing both main
-    effects. Provide the summary and ANOVA results. Then, interpret the
-    intercept and the coefficient for Treatment 2.
+3a. 5 pts. Based on the results of the linear model in question 2, do
+you need to fit the interaction term?
+
+Based on the ANOVA results from Question 2, the interaction term
+(Treatment:DaysAfterPlanting) is not significant (p = 1), indicating
+that the effect of Treatment on Emergence does not significantly vary
+across different DaysAfterPlanting. Therefore, we can simplify the model
+by removing the interaction term and refitting it with only the main
+effects.
+
+3b. Provide a simplified linear model without the interaction term but
+still testing both main effects. Provide the summary and ANOVA results.
+Then, interpret the intercept and the coefficient for Treatment 2.
 
 ``` r
 lm_model2 <- lm(Emergence ~ Treatment+ DaysAfterPlanting, data = data)
@@ -241,7 +247,21 @@ anova(lm_model2)
 
 ### Result interpretation
 
-### Question 4
+The intercept of 182.163 represents the expected Emergence value when
+the treatment is at its reference level, which is Treatment 1, and the
+number of days after planting is at the reference level, which is 7
+days. This means that when Treatment = 1 and DaysAfterPlanting = 7, the
+model predicts an Emergence value of 182.163. This is the baseline value
+for the response variable when both factors are at their reference
+levels.
+
+The coefficient for Treatment 2 (-134.531) means that, compared to
+Treatment 1, Emergence is estimated to decrease by 134.531 units when
+Treatment 2 is applied, with the observation taken 7 days after
+planting. This difference is statistically significant, as indicated by
+the p-value (\< 2e-16).
+
+## Question 4
 
 4.  5 pts. Calculate the least square means for Treatment using the
     emmeans package and perform a Tukey separation with the compact
@@ -249,7 +269,7 @@ anova(lm_model2)
 
 ``` r
 lsmeans <- emmeans(lm_model2, ~Treatment) # estimate lsmeans of variety within Treatment
-Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE) # contrast with Tukey ajustment
+Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE) # contrast with Tukey adjustment
 Results_lsmeans
 ```
 
@@ -317,7 +337,16 @@ Results_lsmeans
 
 ### Result interpretation
 
-### Question 5
+The LSMeans show that Treatment 2 has a significantly lower emergence
+(55.6) compared to all other treatments, which have similar means around
+199-200. The compact letter display groups the treatments into two
+categories: Treatments 5, 3, 6, and 1 are not significantly different
+from each other, while Treatments 7, 2, and 8 differ significantly.
+Tukey’s pairwise comparisons confirm that Treatment 2 is significantly
+lower than all other treatments, while differences within other
+treatments are generally not significant.
+
+## Question 5
 
 5.  4 pts. The provided function lets you dynamically add a linear model
     plus one factor from that model and plots a bar chart with letters
@@ -365,8 +394,28 @@ plot_cldbars_onefactor(lm_model2,"Treatment")
 ```
 
 ![](Linearregression_Cha_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
-\### Question 6
+
+### Result Interpretation - significance of letters
+
+The letters help us know which treatments are significantly different
+from the others. Treatments with the same letter are not significantly
+different from each other, while treatments with different letters are
+significantly different.
+
+In the above result, Treatments 1, 4, 8, and 9 share the “ab” label,
+indicating that they are not significantly different from each other.
+Treatment 2, marked with a “c,” is significantly different from all
+other treatments. Treatments 3, 5, and 6, labeled with “a,” are
+significantly different from Treatments 2 and 7, but not from each
+other. Treatment 7, marked with a “b,” is only significantly different
+from Treatments 1, 4, 8, and 9, and not from the others within its
+group.
+
+## Question 6
 
 6.  2 pts. Generate the gfm .md file along with a .html, .docx, or .pdf.
     Commit, and push the .md file to github and turn in the .html,
     .docx, or .pdf to Canvas. Provide me a link here to your github.
+
+[Link to
+github](https://github.com/NVI0001/Reproducibility_Project/tree/main/Coding_Challenge7)

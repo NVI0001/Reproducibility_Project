@@ -1,15 +1,16 @@
 ---
-title: "Linearregression_challenge"
-author: "Temitope Folorunso & Nneka Iduu"
-date: "2025-04-02"
+title: "Linear Regression_Coding Challenge 7"
+author: "Temitope Ruth Folorunso & Nneka Vivian Iduu"
+date: "2025-04-03"
 output:
-  md_document:
-    variant: gfm
   pdf_document:
     toc: true
-    word_doucment:
+  md_document:
+    variant: gfm
 ---
+
 # Linear Model – 25 pts
+
 ## Question 1
 
 1.	4 pts. Read in the data called “PlantEmergence.csv” using a relative file path and load the following libraries. tidyverse, lme4, emmeans, multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting  and Rep into factors using the function as.factor
@@ -17,17 +18,24 @@ output:
 ```{r setup, include=TRUE}
 # Read in data and set variable as a factor
 data <- read.csv("PlantEmergence.csv",na="na")
-head(data)
-# set variable as a factor
-data$Treatment <- as.factor(data$Treatment) 
-data$DaysAfterPlanting <- as.factor(data$DaysAfterPlanting) 
-data$Rep <- as.factor(data$Rep) 
+str(data)
+
 # Load necessary libraries
 library(tidyverse)
 library(lme4)
 library(emmeans)
 library(multcomp)
 library(multcompView)
+
+# Turn the Treatment , DaysAfterPlanting  and Rep into factors
+data <- data %>%
+  mutate(
+    Treatment = as.factor(Treatment),
+    DaysAfterPlanting = as.factor(DaysAfterPlanting),
+    Rep = as.factor(Rep)
+  )
+str(data)
+
 ```
 ## Question 2
 
@@ -38,9 +46,14 @@ lm_model <- lm(Emergence ~ Treatment*DaysAfterPlanting, data = data)
 summary(lm_model)
 anova(lm_model)
 ```
-### Question 3
 
-3.	5 pts. Based on the results of the linear model in question 2, do you need to fit the interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.
+## Question 3
+
+3a.	5 pts. Based on the results of the linear model in question 2, do you need to fit the interaction term?
+
+Based on the ANOVA results from Question 2, the interaction term (Treatment:DaysAfterPlanting) is not significant (p = 1), indicating that the effect of Treatment on Emergence does not significantly vary across different DaysAfterPlanting. Therefore, we can simplify the model by removing the interaction term and refitting it with only the main effects.
+
+3b. Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.
 
 ```{r, include=TRUE}
 lm_model2 <- lm(Emergence ~ Treatment+ DaysAfterPlanting, data = data)
@@ -48,22 +61,26 @@ summary(lm_model2)
 anova(lm_model2)
 ```
 ### Result interpretation
+The intercept of 182.163 represents the expected Emergence value when the treatment is at its reference level, which is Treatment 1, and the number of days after planting is at the reference level, which is 7 days. This means that when Treatment = 1 and DaysAfterPlanting = 7, the model predicts an Emergence value of 182.163. This is the baseline value for the response variable when both factors are at their reference levels.
+
+The coefficient for Treatment 2 (-134.531) means that, compared to Treatment 1, Emergence is estimated to decrease by 134.531 units when Treatment 2 is applied, with the observation taken 7 days after planting. This difference is statistically significant, as indicated by the p-value (< 2e-16).
 
 
-
-### Question 4
+## Question 4
 
 4.	5 pts. Calculate the least square means for Treatment using the emmeans package and perform a Tukey separation with the compact letter display using the cld function. Interpret the results.
+
 ```{r}
 lsmeans <- emmeans(lm_model2, ~Treatment) # estimate lsmeans of variety within Treatment
-Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE) # contrast with Tukey ajustment
+Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE) # contrast with Tukey adjustment
 Results_lsmeans
 ```
 
 ### Result interpretation
+The LSMeans show that Treatment 2 has a significantly lower emergence (55.6) compared to all other treatments, which have similar means around 199-200. The compact letter display groups the treatments into two categories: Treatments 5, 3, 6, and 1 are not significantly different from each other, while Treatments 7, 2, and 8 differ significantly. Tukey’s pairwise comparisons confirm that Treatment 2 is significantly lower than all other treatments, while differences within other treatments are generally not significant.
 
 
-### Question 5
+## Question 5
 
 5.	4 pts. The provided function lets you dynamically add a linear model plus one factor from that model and plots a bar chart with letters denoting treatment differences. Use this model to generate the plot shown below. Explain the significance of the letters. 
 
@@ -107,7 +124,16 @@ plot_cldbars_onefactor <- function(lm_model, factor) {
 plot_cldbars_onefactor(lm_model2,"Treatment")
  
 ```
-### Question 6
+
+### Result Interpretation - significance of letters
+The letters help us know which treatments are significantly different from the others. Treatments with the same letter are not significantly different from each other, while treatments with different letters are significantly different.
+
+In the above result, Treatments 1, 4, 8, and 9 share the "ab" label, indicating that they are not significantly different from each other. Treatment 2, marked with a "c," is significantly different from all other treatments. Treatments 3, 5, and 6, labeled with "a," are significantly different from Treatments 2 and 7, but not from each other. Treatment 7, marked with a "b," is only significantly different from Treatments 1, 4, 8, and 9, and not from the others within its group.
+
+
+## Question 6
 
 6.	2 pts. Generate the gfm .md file along with a .html, .docx, or .pdf. Commit, and push the .md file to github and turn in the .html, .docx, or .pdf to Canvas. Provide me a link here to your github.
+
+[Link to github](https://github.com/NVI0001/Reproducibility_Project/tree/main/Coding_Challenge7)
 
